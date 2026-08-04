@@ -7,16 +7,18 @@
 
 import SwiftUI
 
-func tapButton() {
-    print("Tapped")
-}
-
 struct ComponentB: View {
     @Binding var accountBalance: Double
+    @Binding var transactions: [MockTransaction]
+    
     var body: some View {
             Button {
-                accountBalance += 10
-                print("Tapped")
+                let newTransaction = MockTransaction(
+                    name: "Coffee",
+                    amount: 5.50
+                )
+                transactions.append(newTransaction)
+                accountBalance -= newTransaction.amount
             } label: {
                 Label("Add Transaction", systemImage: "plus.circle.fill")
                     .font(.headline)

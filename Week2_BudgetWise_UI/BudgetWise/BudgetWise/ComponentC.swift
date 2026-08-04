@@ -14,21 +14,16 @@ struct MockTransaction: Identifiable {
 }
 
 struct ComponentC: View {
-    let transactions = [
-        MockTransaction(name:"Burger", amount:15.70),
-        MockTransaction(name:"Pizza", amount:14.40),
-        MockTransaction(name:"Starbucks", amount:7.30),
-        MockTransaction(name:"KFC", amount:17.90),
-        MockTransaction(name:"Banana", amount:2.40)
-    ]
+    @Binding var transactions: [MockTransaction]
     
     var body: some View {
-        List(transactions) { transaction in
+        List($transactions) { $transaction in
             HStack {
                 Image(systemName: "cup.and.saucer.fill")
                 Text("\(transaction.name)")
                 Spacer()
                 Text("\(transaction.amount, specifier: "%.2f")")
+                    .foregroundColor(transaction.amount > 0 ? .green : .red)
             }
         }
     }
