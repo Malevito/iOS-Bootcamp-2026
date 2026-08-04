@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ComponentA: View {
+    @Binding var accountBalance: Double
+    
     var body: some View {
         VStack {
             VStack{
                 Text("Your Balance")
                     .font(.title2)
-                Text("$1,245.60")
+                Text("\(accountBalance, specifier: "%.2f")")
                     .font(.title)
             }
             .padding(30)
