@@ -9,26 +9,20 @@ import SwiftUI
 
 @main
 struct BudgetWiseApp: App {
-    @State private var balance: Double = 1245.60
-    
-    @State private var transactions: [MockTransaction] = [
-        MockTransaction(name: "Burger", amount: 15.70),
-        MockTransaction(name: "Pizza", amount: 14.40),
-        MockTransaction(name: "Starbucks", amount: 7.30)
-    ]
+    @StateObject private var viewModel = BudgetWiseViewModel()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 VStack(spacing: 0) {
-                    ComponentA(accountBalance: $balance)
+                    ComponentA(accountBalance: viewModel.balance)
                         .padding(.horizontal)
                         .padding(.top, 20)
                     
-                    ComponentB(accountBalance: $balance, transactions: $transactions)
+                    ComponentB(viewModel: viewModel)
                         .padding(.vertical, 10)
                     
-                    ComponentC(transactions: $transactions)
+                    ComponentC(transactions: viewModel.transactions)
                         .listStyle(.plain)
                 }
                 .navigationTitle("BudgetWise")
@@ -37,3 +31,4 @@ struct BudgetWiseApp: App {
         }
     }
 }
+

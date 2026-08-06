@@ -14,10 +14,10 @@ struct MockTransaction: Identifiable {
 }
 
 struct ComponentC: View {
-    @Binding var transactions: [MockTransaction]
+    let transactions: [MockTransaction]
     
     var body: some View {
-        List($transactions) { $transaction in
+        List(transactions) {transaction in
             HStack {
                 Image(systemName: "cup.and.saucer.fill")
                 Text("\(transaction.name)")

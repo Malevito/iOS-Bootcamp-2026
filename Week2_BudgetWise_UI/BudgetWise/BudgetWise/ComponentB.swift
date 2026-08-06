@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct ComponentB: View {
-    @Binding var accountBalance: Double
-    @Binding var transactions: [MockTransaction]
+    @ObservedObject var viewModel: BudgetWiseViewModel
     
     var body: some View {
             Button {
-                let newTransaction = MockTransaction(
-                    name: "Coffee",
-                    amount: 5.50
-                )
-                transactions.append(newTransaction)
-                accountBalance -= newTransaction.amount
+                viewModel.addTransaction(name: "Coffee", amount: 5.50)
             } label: {
                 Label("Add Transaction", systemImage: "plus.circle.fill")
                     .font(.headline)

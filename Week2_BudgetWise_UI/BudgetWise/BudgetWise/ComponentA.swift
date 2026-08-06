@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ComponentA: View {
-    @Binding var accountBalance: Double
+    var accountBalance: Double
     
     var body: some View {
         VStack {
