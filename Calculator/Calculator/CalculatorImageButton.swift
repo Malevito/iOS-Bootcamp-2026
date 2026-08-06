@@ -1,5 +1,5 @@
 //
-//  CalculatorButton.swift
+//  CalculatorImageButton.swift
 //  Calculator
 //
 //  Created by Nikolay Malev on 6.08.26.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct CalculatorButton: View {
-    var buttonText = "1"
+struct CalculatorImageButton: View {
+    var buttonText = "plus"
     var width: CGFloat = 70
     var color = Color(hue: 1.0, saturation: 0, brightness: 0.283)
-    var action: (CalculatorButton) -> Void = {_ in}
+    var action: (CalculatorImageButton) -> Void = {_ in}
     var mode: CalculatorMode = .notSet
     
     var body: some View {
         Button(action: {
             action(self)
         }, label: {
-            Text(buttonText)
+            Image(systemName: buttonText)
                 .font(.largeTitle)
                 .frame(width: width, height: 70, alignment: .center)
                 .background(color)
@@ -28,6 +28,6 @@ struct CalculatorButton: View {
     }
 }
 
-//#Preview {
-//    CalculatorButton()
-//}
+#Preview {
+    CalculatorImageButton()
+}
